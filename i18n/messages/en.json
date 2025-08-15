@@ -27,7 +27,6 @@
     "logout": "Logout"
   },
   "menus": {
-    "title": "Your Menus",
     "addMenu": "Add Menu",
     "createNewMenu": "Create New Menu",
     "editMenu": "Edit Menu",
@@ -48,8 +47,6 @@
     "menuDeleted": "Menu deleted successfully"
   },
   "calendar": {
-    "title": "Weekly Meal Planner",
-    "description": "Drag menus from the sidebar to plan your week, or double-click to assign to the next available day.",
     "weekOf": "Week of {date}",
     "previousWeek": "Previous Week",
     "nextWeek": "Next Week",
@@ -57,7 +54,6 @@
     "dropMenuHere": "Drop a menu here",
     "orDoubleClick": "or double-click a menu",
     "remove": "Remove",
-    "menuLibrary": "Your Menus",
     "dragOrDoubleClick": "Drag to calendar or double-click to auto-assign",
     "quickActions": "Quick Actions",
     "generateShoppingList": "Generate Shopping List",

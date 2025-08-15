@@ -87,6 +87,17 @@ export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuIt
       draggable={isDraggable}
       onDragStart={handleDragStart}
     >
+      {/* Menu Image */}
+      {menuItem.image && (
+        <div className="aspect-video w-full overflow-hidden rounded-t-lg">
+          <img
+            src={menuItem.image}
+            alt={menuItem.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+      
       <div className="p-4">
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1">

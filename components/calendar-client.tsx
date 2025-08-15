@@ -42,13 +42,6 @@ export function CalendarClient({ menuItems }: CalendarClientProps) {
         <div className="sticky top-24 space-y-6">
           {/* Menu Library */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-100">
-            <div className="p-4 border-b border-gray-100">
-              <h2 className="text-lg font-semibold text-gray-900">Your Menus</h2>
-              <p className="text-sm text-gray-600 mt-1">
-                Drag to calendar or double-click to auto-assign
-              </p>
-            </div>
-            
             <div className="p-4 max-h-96 overflow-y-auto">
               {menuItems.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">

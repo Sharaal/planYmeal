@@ -33,13 +33,6 @@ export default async function CalendarPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Weekly Meal Planner</h1>
-          <p className="text-gray-600">
-            Drag menus from the sidebar to plan your week, or double-click to assign to the next available day.
-          </p>
-        </div>
-        
         <CalendarClient menuItems={menuItems} />
       </main>
     </div>

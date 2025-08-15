@@ -27,7 +27,6 @@
     "logout": "Abmelden"
   },
   "menus": {
-    "title": "Ihre Menüs",
     "addMenu": "Menü hinzufügen",
     "createNewMenu": "Neues Menü erstellen",
     "editMenu": "Menü bearbeiten",
@@ -48,8 +47,6 @@
     "menuDeleted": "Menü erfolgreich gelöscht"
   },
   "calendar": {
-    "title": "Wöchentlicher Mahlzeitenplaner",
-    "description": "Ziehen Sie Menüs aus der Seitenleiste, um Ihre Woche zu planen, oder doppelklicken Sie, um dem nächsten verfügbaren Tag zuzuweisen.",
     "weekOf": "Woche vom {date}",
     "previousWeek": "Vorherige Woche",
     "nextWeek": "Nächste Woche",
@@ -57,7 +54,6 @@
     "dropMenuHere": "Menü hier ablegen",
     "orDoubleClick": "oder Menü doppelklicken",
     "remove": "Entfernen",
-    "menuLibrary": "Ihre Menüs",
     "dragOrDoubleClick": "Zum Kalender ziehen oder doppelklicken für automatische Zuweisung",
     "quickActions": "Schnellaktionen",
     "generateShoppingList": "Einkaufsliste erstellen",

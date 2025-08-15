@@ -50,21 +50,6 @@ export default async function MenusPage({ searchParams }: MenusPageProps) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Your Menus</h1>
-            <p className="text-gray-600">
-              {totalCount} menu{totalCount !== 1 ? "s" : ""} total
-            </p>
-          </div>
-          <Link
-            href="/menus/new"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-          >
-            Create New Menu
-          </Link>
-        </div>
-
         {menuItems.length === 0 ? (
           <div className="text-center py-16">
             <div className="max-w-md mx-auto">
