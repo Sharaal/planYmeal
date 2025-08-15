@@ -118,8 +118,6 @@
 ### 6.3 User Experience
 - [ ] **Add confirmation dialogs** for delete operations
 - [ ] **Implement toast notifications** for success/error feedback
-- [ ] **Add keyboard shortcuts** for power users
-- [ ] **Optimize performance** with React.memo and useMemo where needed
 
 ## Phase 7: Data Management & Security
 
@@ -131,7 +129,6 @@
 
 ### 7.2 Database Optimizations
 - [ ] **Add database indexes** for frequently queried fields
-- [ ] **Implement connection pooling** for production environment
 - [ ] **Add data seeding** for development and testing
 
 ## Phase 8: Testing & Quality Assurance
@@ -146,7 +143,6 @@
 - [ ] **Test complete user workflows** (create menu → plan week → generate list)
 - [ ] **Test drag-and-drop functionality** across different browsers
 - [ ] **Test responsive design** on various screen sizes
-- [ ] **Perform accessibility audit** (ARIA labels, keyboard navigation)
 
 ## Phase 9: Production Preparation
 
