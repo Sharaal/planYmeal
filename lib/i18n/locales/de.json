@@ -18,7 +18,6 @@
   "navigation": {
     "calendar": "Kalender",
     "menus": "Menüs",
-    "addMenu": "Menü hinzufügen",
     "signOut": "Abmelden"
   },
   "auth": {
@@ -35,7 +34,13 @@
     "failedToRemove": "Menü konnte nicht entfernt werden. Bitte versuchen Sie es erneut."
   },
   "menus": {
+    "title": "Ihre Menüs",
+    "totalCount": "{{count}} Menü",
+    "totalCount_plural": "{{count}} Menüs",
+    "totalLabel": "insgesamt", 
+    "addMenu": "Menü hinzufügen",
     "noMenusTitle": "Noch keine Menüs",
+    "noMenusSubtitle": "Beginnen Sie mit dem Aufbau Ihrer Mahlzeitenplanungssammlung, indem Sie Ihr erstes Menü erstellen.",
     "createFirst": "Ihr erstes Menü erstellen",
     "ingredientsCount": "Zutaten ({{count}})",
     "moreIngredients": "+{{count}} weitere",

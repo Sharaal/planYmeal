@@ -37,13 +37,6 @@ export default function Navigation() {
         </div>
         
         <div className="flex items-center gap-4">
-          <Link
-            href="/menus/new"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors text-sm"
-          >
-            {t('navigation.addMenu')}
-          </Link>
-          
           <div className="flex items-center gap-3">
             <LanguageSwitcher />
             {session.user?.image && (

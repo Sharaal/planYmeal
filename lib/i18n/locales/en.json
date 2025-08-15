@@ -18,7 +18,6 @@
   "navigation": {
     "calendar": "Calendar",
     "menus": "Menus",
-    "addMenu": "Add Menu",
     "signOut": "Sign Out"
   },
   "auth": {
@@ -35,8 +34,14 @@
     "failedToRemove": "Failed to remove menu. Please try again."
   },
   "menus": {
+    "title": "Your Menus",
+    "totalCount": "{{count}} menu",
+    "totalCount_plural": "{{count}} menus", 
+    "totalLabel": "total",
+    "addMenu": "Add Menu",
     "noMenusTitle": "No menus yet",
-    "createFirst": "Create your first menu",
+    "noMenusSubtitle": "Start building your meal planning collection by creating your first menu.",
+    "createFirst": "Create Your First Menu",
     "ingredientsCount": "Ingredients ({{count}})",
     "moreIngredients": "+{{count}} more",
     "deleteSuccess": "\"{{name}}\" has been deleted successfully.",
