@@ -116,8 +116,8 @@
 - [x] **Add loading states** and skeleton components
 
 ### 6.3 User Experience
-- [ ] **Add confirmation dialogs** for delete operations
-- [ ] **Implement toast notifications** for success/error feedback
+- [x] **Add confirmation dialogs** for delete operations
+- [x] **Implement toast notifications** for success/error feedback
 
 ## Phase 7: Data Management & Security
 
