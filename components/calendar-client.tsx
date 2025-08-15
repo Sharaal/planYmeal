@@ -57,18 +57,34 @@ export function CalendarClient({ menuItems }: CalendarClientProps) {
                   </Link>
                 </div>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {menuItems.map((menuItem) => (
-                    <div key={menuItem.id} className="scale-90 origin-top-left">
-                      <MenuItemCard
-                        menuItem={{
-                          ...menuItem,
-                          description: menuItem.description || undefined,
-                          image: menuItem.image || undefined,
-                          rating: menuItem.rating || undefined,
-                        }}
-                        isDraggable={true}
-                      />
+                    <div
+                      key={menuItem.id}
+                      className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 cursor-move hover:scale-[1.02]"
+                      draggable={true}
+                      onDragStart={(e) => {
+                        e.dataTransfer.setData('menuItemId', menuItem.id.toString());
+                        e.dataTransfer.effectAllowed = 'copy';
+                      }}
+                    >
+                      {/* Menu Image */}
+                      {menuItem.image && (
+                        <div className="w-12 h-12 flex-shrink-0 overflow-hidden rounded">
+                          <img
+                            src={menuItem.image}
+                            alt={menuItem.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+                      
+                      {/* Menu Title */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-medium text-gray-900 text-sm truncate">
+                          {menuItem.name}
+                        </h3>
+                      </div>
                     </div>
                   ))}
                 </div>
