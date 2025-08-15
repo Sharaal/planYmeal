@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { format, startOfWeek, addDays, isSameDay } from 'date-fns';
+import { de, enUS } from 'date-fns/locale';
 import { DayCard } from './day-card';
 import { useToast } from './toast-provider';
+import { useTranslation } from 'react-i18next';
 
 interface WeekCalendarProps {
   onMenuAssign?: (date: Date, menuItemId: number) => void;
@@ -14,6 +16,12 @@ export function WeekCalendar({ onMenuAssign, onMenuRemove }: WeekCalendarProps) 
   const [currentWeek, setCurrentWeek] = useState(new Date());
   const [weekPlans, setWeekPlans] = useState<Record<string, Array<{ id: number; menuItem?: any; mealType?: string }>>>({});
   const { showToast } = useToast();
+  const { t, i18n } = useTranslation();
+  
+  // Get the appropriate date-fns locale based on current language
+  const getDateLocale = () => {
+    return i18n.language === 'de' ? de : enUS;
+  };
 
   const weekStart = startOfWeek(currentWeek, { weekStartsOn: 1 }); // Monday start
   const weekDays = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
@@ -62,14 +70,14 @@ export function WeekCalendar({ onMenuAssign, onMenuRemove }: WeekCalendarProps) 
       if (response.ok) {
         fetchWeekPlan(); // Refresh
         onMenuAssign?.(date, menuItemId);
-        showToast(`Menu added to ${format(date, 'EEEE, MMM d')}`, 'success');
+        showToast(t('calendar.menuAdded', { date: format(date, i18n.language === 'de' ? 'EEEE, d. MMM' : 'EEEE, MMM d', { locale: getDateLocale() }) }), 'success');
       } else {
         const errorData = await response.json();
-        showToast(errorData.error || 'Failed to assign menu', 'error');
+        showToast(errorData.error || t('calendar.failedToAssign'), 'error');
       }
     } catch (error) {
       console.error('Failed to assign menu:', error);
-      showToast('Failed to assign menu. Please try again.', 'error');
+      showToast(t('calendar.failedToAssign'), 'error');
     }
   };
 
@@ -82,11 +90,11 @@ export function WeekCalendar({ onMenuAssign, onMenuRemove }: WeekCalendarProps) 
       if (response.ok) {
         fetchWeekPlan(); // Refresh
       } else {
-        showToast('Failed to remove menu. Please try again.', 'error');
+        showToast(t('calendar.failedToRemove'), 'error');
       }
     } catch (error) {
       console.error('Failed to remove menu:', error);
-      showToast('Failed to remove menu. Please try again.', 'error');
+      showToast(t('calendar.failedToRemove'), 'error');
     }
   };
 
@@ -98,18 +106,18 @@ export function WeekCalendar({ onMenuAssign, onMenuRemove }: WeekCalendarProps) 
           onClick={() => navigateWeek('prev')}
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
         >
-          ← Previous Week
+          {t('calendar.previousWeek')}
         </button>
         
         <h2 className="text-xl font-semibold text-gray-900">
-          Week of {format(weekStart, 'MMMM d, yyyy')}
+          {t('calendar.weekOf', { date: format(weekStart, i18n.language === 'de' ? 'd. MMMM yyyy' : 'MMMM d, yyyy', { locale: getDateLocale() }) })}
         </h2>
         
         <button
           onClick={() => navigateWeek('next')}
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
         >
-          Next Week →
+          {t('calendar.nextWeek')}
         </button>
       </div>
 

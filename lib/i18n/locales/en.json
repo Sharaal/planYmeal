@@ -22,60 +22,33 @@
     "signOut": "Sign Out"
   },
   "auth": {
-    "signIn": "Sign In with GitHub",
-    "welcome": "Welcome, {{name}}",
     "tagline": "Plan your meals, organize your week, and generate shopping lists effortlessly"
   },
   "calendar": {
-    "title": "Weekly Meal Planner",
-    "subtitle": "Drag menus from the sidebar to plan your week, or double-click to assign to the next available day.",
-    "weekOf": "Week of {{date}}",
-    "previousWeek": "← Previous Week",
-    "nextWeek": "Next Week →",
     "nothingPlanned": "Drop menus here or nothing planned",
     "menuAdded": "Menu added to {{date}}",
     "menuRemoved": "Menu removed from {{date}}",
+    "previousWeek": "← Previous Week",
+    "nextWeek": "Next Week →",
+    "weekOf": "Week of {{date}}",
     "failedToAssign": "Failed to assign menu. Please try again.",
     "failedToRemove": "Failed to remove menu. Please try again."
   },
   "menus": {
-    "title": "Your Menus",
-    "totalCount": "{{count}} menu",
-    "totalCount_plural": "{{count}} menus",
-    "totalLabel": "total",
-    "createNew": "Create New Menu",
     "noMenusTitle": "No menus yet",
-    "noMenusSubtitle": "Start building your meal planning collection by creating your first menu.",
-    "createFirst": "Create Your First Menu",
-    "library": "Your Menus",
-    "librarySubtitle": "Drag to calendar or double-click to auto-assign",
-    "ingredients": "Ingredients",
+    "createFirst": "Create your first menu",
     "ingredientsCount": "Ingredients ({{count}})",
     "moreIngredients": "+{{count}} more",
-    "rating": "({{rating}})",
     "deleteSuccess": "\"{{name}}\" has been deleted successfully.",
-    "deleteError": "Failed to delete \"{{name}}\". Please try again."
-  },
-  "menuForm": {
-    "createTitle": "Create New Menu",
-    "editTitle": "Edit Menu",
-    "name": "Menu Name",
-    "namePlaceholder": "Enter menu name...",
-    "description": "Description",
-    "descriptionPlaceholder": "Describe this menu...",
-    "image": "Image URL",
-    "imagePlaceholder": "Enter image URL...",
-    "rating": "Rating",
-    "addIngredient": "Add Ingredient",
-    "ingredientName": "Ingredient Name",
-    "amount": "Amount",
-    "unit": "Unit"
+    "deleteError": "Failed to delete \"{{name}}\". Please try again.",
+    "removeMenu": "Remove this menu"
   },
   "confirmDialog": {
     "deleteMenuTitle": "Delete Menu",
     "deleteMenuMessage": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
     "removeMenuTitle": "Remove Menu",
-    "removeMenuMessage": "Are you sure you want to remove {{menuName}} from {{date}}?"
+    "removeMenuMessage": "Are you sure you want to remove {{menuName}} from {{date}}?",
+    "thisMenu": "this menu"
   },
   "shoppingList": {
     "title": "Shopping List",
@@ -85,29 +58,5 @@
   },
   "quickActions": {
     "title": "Quick Actions"
-  },
-  "pagination": {
-    "previous": "Previous",
-    "next": "Next"
-  },
-  "dayNames": {
-    "monday": "Monday",
-    "tuesday": "Tuesday", 
-    "wednesday": "Wednesday",
-    "thursday": "Thursday",
-    "friday": "Friday",
-    "saturday": "Saturday",
-    "sunday": "Sunday"
-  },
-  "units": {
-    "g": "g",
-    "kg": "kg",
-    "ml": "ml",
-    "l": "l",
-    "tsp": "tsp",
-    "tbsp": "tbsp",
-    "cup": "cup",
-    "piece": "piece",
-    "pieces": "pieces"
   }
 }

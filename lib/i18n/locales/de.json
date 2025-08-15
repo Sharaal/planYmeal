@@ -22,60 +22,33 @@
     "signOut": "Abmelden"
   },
   "auth": {
-    "signIn": "Mit GitHub anmelden",
-    "welcome": "Willkommen, {{name}}",
     "tagline": "Plane deine Mahlzeiten, organisiere deine Woche und erstelle mühelos Einkaufslisten"
   },
   "calendar": {
-    "title": "Wöchentlicher Mahlzeitenplaner",
-    "subtitle": "Ziehe Menüs aus der Seitenleiste in den Kalender oder doppelklicke, um sie dem nächsten verfügbaren Tag zuzuordnen.",
-    "weekOf": "Woche vom {{date}}",
-    "previousWeek": "← Vorherige Woche",
-    "nextWeek": "Nächste Woche →",
     "nothingPlanned": "Menüs hier ablegen oder nichts geplant",
     "menuAdded": "Menü hinzugefügt zu {{date}}",
     "menuRemoved": "Menü entfernt von {{date}}",
+    "previousWeek": "← Vorherige Woche",
+    "nextWeek": "Nächste Woche →",
+    "weekOf": "Woche vom {{date}}",
     "failedToAssign": "Menü konnte nicht zugeordnet werden. Bitte versuchen Sie es erneut.",
     "failedToRemove": "Menü konnte nicht entfernt werden. Bitte versuchen Sie es erneut."
   },
   "menus": {
-    "title": "Ihre Menüs",
-    "totalCount": "{{count}} Menü",
-    "totalCount_plural": "{{count}} Menüs",
-    "totalLabel": "insgesamt",
-    "createNew": "Neues Menü erstellen",
     "noMenusTitle": "Noch keine Menüs",
-    "noMenusSubtitle": "Beginnen Sie mit dem Aufbau Ihrer Mahlzeitenplanungssammlung, indem Sie Ihr erstes Menü erstellen.",
     "createFirst": "Ihr erstes Menü erstellen",
-    "library": "Ihre Menüs",
-    "librarySubtitle": "Ziehen Sie in den Kalender oder doppelklicken Sie für automatische Zuweisung",
-    "ingredients": "Zutaten",
     "ingredientsCount": "Zutaten ({{count}})",
     "moreIngredients": "+{{count}} weitere",
-    "rating": "({{rating}})",
     "deleteSuccess": "\"{{name}}\" wurde erfolgreich gelöscht.",
-    "deleteError": "\"{{name}}\" konnte nicht gelöscht werden. Bitte versuchen Sie es erneut."
-  },
-  "menuForm": {
-    "createTitle": "Neues Menü erstellen",
-    "editTitle": "Menü bearbeiten",
-    "name": "Menüname",
-    "namePlaceholder": "Menüname eingeben...",
-    "description": "Beschreibung",
-    "descriptionPlaceholder": "Dieses Menü beschreiben...",
-    "image": "Bild-URL",
-    "imagePlaceholder": "Bild-URL eingeben...",
-    "rating": "Bewertung",
-    "addIngredient": "Zutat hinzufügen",
-    "ingredientName": "Zutatenname",
-    "amount": "Menge",
-    "unit": "Einheit"
+    "deleteError": "\"{{name}}\" konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
+    "removeMenu": "Dieses Menü entfernen"
   },
   "confirmDialog": {
     "deleteMenuTitle": "Menü löschen",
     "deleteMenuMessage": "Sind Sie sicher, dass Sie \"{{name}}\" löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
     "removeMenuTitle": "Menü entfernen",
-    "removeMenuMessage": "Sind Sie sicher, dass Sie {{menuName}} von {{date}} entfernen möchten?"
+    "removeMenuMessage": "Sind Sie sicher, dass Sie {{menuName}} von {{date}} entfernen möchten?",
+    "thisMenu": "dieses Menü"
   },
   "shoppingList": {
     "title": "Einkaufsliste",
@@ -85,29 +58,5 @@
   },
   "quickActions": {
     "title": "Schnellaktionen"
-  },
-  "pagination": {
-    "previous": "Zurück",
-    "next": "Weiter"
-  },
-  "dayNames": {
-    "monday": "Montag",
-    "tuesday": "Dienstag",
-    "wednesday": "Mittwoch", 
-    "thursday": "Donnerstag",
-    "friday": "Freitag",
-    "saturday": "Samstag",
-    "sunday": "Sonntag"
-  },
-  "units": {
-    "g": "g",
-    "kg": "kg",
-    "ml": "ml",
-    "l": "l",
-    "tsp": "TL",
-    "tbsp": "EL",
-    "cup": "Tasse",
-    "piece": "Stück",
-    "pieces": "Stück"
   }
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useConfirmationDialog } from "./confirmation-dialog";
 import { useToast } from "./toast-provider";
+import { useTranslation } from "react-i18next";
 
 interface Ingredient {
   id: number;
@@ -55,6 +56,7 @@ export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuIt
   const [isDeleting, setIsDeleting] = useState(false);
   const { showConfirmation, ConfirmationDialog } = useConfirmationDialog();
   const { showToast } = useToast();
+  const { t } = useTranslation();
 
   const handleDragStart = (e: React.DragEvent) => {
     if (isDraggable) {
@@ -67,19 +69,19 @@ export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuIt
     if (!onDelete) return;
     
     showConfirmation({
-      title: 'Delete Menu',
-      message: `Are you sure you want to delete "${menuItem.name}"? This action cannot be undone.`,
-      confirmLabel: 'Delete',
-      cancelLabel: 'Cancel',
+      title: t('confirmDialog.deleteMenuTitle'),
+      message: t('confirmDialog.deleteMenuMessage', { name: menuItem.name }),
+      confirmLabel: t('common.delete'),
+      cancelLabel: t('common.cancel'),
       variant: 'danger',
       onConfirm: async () => {
         setIsDeleting(true);
         try {
           await onDelete(menuItem.id);
-          showToast(`"${menuItem.name}" has been deleted successfully.`, 'success');
+          showToast(t('menus.deleteSuccess', { name: menuItem.name }), 'success');
         } catch (error) {
           console.error("Error deleting menu item:", error);
-          showToast(`Failed to delete "${menuItem.name}". Please try again.`, 'error');
+          showToast(t('menus.deleteError', { name: menuItem.name }), 'error');
         } finally {
           setIsDeleting(false);
         }
@@ -125,7 +127,7 @@ export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuIt
             <Link
               href={`/menus/${menuItem.id}/edit`}
               className="text-blue-500 hover:text-blue-600 transition-colors p-1"
-              title="Edit menu"
+              title={t('common.edit')}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -137,7 +139,7 @@ export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuIt
                 onClick={handleDelete}
                 disabled={isDeleting}
                 className="text-red-500 hover:text-red-600 transition-colors p-1"
-                title="Delete menu"
+                title={t('common.delete')}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -156,7 +158,7 @@ export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuIt
         {menuItem.ingredients.length > 0 && (
           <div className="border-t pt-3">
             <h4 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
-              Ingredients ({menuItem.ingredients.length})
+              {t('menus.ingredientsCount', { count: menuItem.ingredients.length })}
             </h4>
             <div className="flex flex-wrap gap-1">
               {menuItem.ingredients.slice(0, 3).map((ingredient) => (
@@ -169,7 +171,7 @@ export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuIt
               ))}
               {menuItem.ingredients.length > 3 && (
                 <span className="text-xs text-gray-500">
-                  +{menuItem.ingredients.length - 3} more
+                  {t('menus.moreIngredients', { count: menuItem.ingredients.length - 3 })}
                 </span>
               )}
             </div>

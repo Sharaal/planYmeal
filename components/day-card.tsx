@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import { format } from 'date-fns';
+import { de, enUS } from 'date-fns/locale';
 import { MenuItem } from '@prisma/client';
 import { useConfirmationDialog } from './confirmation-dialog';
 import { useToast } from './toast-provider';
+import { useTranslation } from 'react-i18next';
 
 interface DayCardProps {
   date: Date;
@@ -28,6 +30,12 @@ export function DayCard({
   const [isDragOver, setIsDragOver] = useState(false);
   const { showConfirmation, ConfirmationDialog } = useConfirmationDialog();
   const { showToast } = useToast();
+  const { t, i18n } = useTranslation();
+  
+  // Get the appropriate date-fns locale based on current language
+  const getDateLocale = () => {
+    return i18n.language === 'de' ? de : enUS;
+  };
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -50,14 +58,17 @@ export function DayCard({
 
   const handleRemoveMenu = (dayPlanId: number, menuName?: string) => {
     showConfirmation({
-      title: 'Remove Menu',
-      message: `Are you sure you want to remove ${menuName ? `"${menuName}"` : 'this menu'} from ${format(date, 'EEEE, MMM d')}?`,
-      confirmLabel: 'Remove',
-      cancelLabel: 'Cancel',
+      title: t('confirmDialog.removeMenuTitle'),
+      message: t('confirmDialog.removeMenuMessage', { 
+        menuName: menuName ? `"${menuName}"` : t('confirmDialog.thisMenu'),
+        date: format(date, i18n.language === 'de' ? 'EEEE, d. MMM' : 'EEEE, MMM d', { locale: getDateLocale() })
+      }),
+      confirmLabel: t('common.remove'),
+      cancelLabel: t('common.cancel'),
       variant: 'warning',
       onConfirm: () => {
         onMenuRemove(dayPlanId);
-        showToast(`Menu removed from ${format(date, 'EEEE, MMM d')}`, 'success');
+        showToast(t('calendar.menuRemoved', { date: format(date, i18n.language === 'de' ? 'EEEE, d. MMM' : 'EEEE, MMM d', { locale: getDateLocale() }) }), 'success');
       }
     });
   };
@@ -81,14 +92,14 @@ export function DayCard({
         {/* Day Header */}
         <div className="flex-shrink-0 w-32">
           <div className="font-semibold text-gray-900">
-            {format(date, 'EEEE')}
+            {format(date, 'EEEE', { locale: getDateLocale() })}
           </div>
           <div className="text-sm text-gray-600">
-            {format(date, 'MMM d')}
+            {format(date, i18n.language === 'de' ? 'd. MMM' : 'MMM d', { locale: getDateLocale() })}
           </div>
           {isToday && (
             <span className="inline-block mt-2 px-2 py-1 bg-blue-500 text-white text-xs rounded-full">
-              Today
+{t('common.today')}
             </span>
           )}
         </div>
@@ -127,7 +138,7 @@ export function DayCard({
                     <button
                       onClick={() => handleRemoveMenu(dayPlan.id, dayPlan.menuItem?.name)}
                       className="text-red-600 hover:text-red-800 hover:bg-red-50 rounded p-1 flex-shrink-0"
-                      title="Remove this menu"
+                      title={t('menus.removeMenu')}
                     >
                       ×
                     </button>
@@ -137,7 +148,7 @@ export function DayCard({
             </div>
           ) : (
             <div className="flex items-center justify-center text-gray-400 text-sm h-20">
-              <div>Drop menus here or nothing planned</div>
+              <div>{t('calendar.nothingPlanned')}</div>
             </div>
           )}
         </div>
