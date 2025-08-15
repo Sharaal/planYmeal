@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
 import { CalendarClient } from "@/components/calendar-client";
 import { SignInButton } from "@/components/auth";
+import { SignInContent, CalendarContent } from "@/components/home-content";
 
 export default async function Home() {
   noStore();
@@ -13,13 +14,8 @@ export default async function Home() {
   if (!session?.user?.email) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600">
-            PlanYMeal
-          </h1>
-          <p className="text-gray-600 text-xl mb-8 max-w-md mx-auto">
-            Plan your meals, organize your week, and generate shopping lists effortlessly
-          </p>
+        <div>
+          <SignInContent />
           <SignInButton />
         </div>
       </div>

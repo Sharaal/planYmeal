@@ -3,10 +3,13 @@
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "./language-switcher";
 
 export default function Navigation() {
   const { data: session } = useSession();
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   if (!session) {
     return null; // Don't show navigation if not logged in
@@ -25,10 +28,10 @@ export default function Navigation() {
           </Link>
           <nav className="hidden md:flex items-center gap-6">
             <Link href="/" className={`transition-colors ${isActive("/")}`}>
-              Calendar
+              {t('navigation.calendar')}
             </Link>
             <Link href="/menus" className={`transition-colors ${isActive("/menus")}`}>
-              Menus
+              {t('navigation.menus')}
             </Link>
           </nav>
         </div>
@@ -38,10 +41,11 @@ export default function Navigation() {
             href="/menus/new"
             className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors text-sm"
           >
-            Add Menu
+            {t('navigation.addMenu')}
           </Link>
           
           <div className="flex items-center gap-3">
+            <LanguageSwitcher />
             {session.user?.image && (
               <img 
                 src={session.user.image} 
@@ -56,7 +60,7 @@ export default function Navigation() {
               onClick={() => signOut()}
               className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
             >
-              Sign Out
+              {t('navigation.signOut')}
             </button>
           </div>
         </div>

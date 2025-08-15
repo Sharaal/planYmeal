@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { WeekCalendar } from './week-calendar';
 import { MenuItemCard } from './menu-item';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 interface Ingredient {
   id: number;
@@ -29,6 +30,7 @@ interface CalendarClientProps {
 
 export function CalendarClient({ menuItems }: CalendarClientProps) {
   const [showShoppingList, setShowShoppingList] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col lg:flex-row gap-8">

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import Navigation from "@/components/navigation";
 import { ToastProvider } from "@/components/toast-provider";
+import { I18nextProvider } from "@/components/i18next-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,10 +32,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProvider>
-          <ToastProvider>
-            <Navigation />
-            {children}
-          </ToastProvider>
+          <I18nextProvider>
+            <ToastProvider>
+              <Navigation />
+              {children}
+            </ToastProvider>
+          </I18nextProvider>
         </SessionProvider>
       </body>
     </html>
