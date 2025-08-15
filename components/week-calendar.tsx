@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { format, startOfWeek, addDays, isSameDay } from 'date-fns';
 import { DayCard } from './day-card';
-import { Toast } from './toast';
+import { useToast } from './toast-provider';
 
 interface WeekCalendarProps {
   onMenuAssign?: (date: Date, menuItemId: number) => void;
@@ -13,7 +13,7 @@ interface WeekCalendarProps {
 export function WeekCalendar({ onMenuAssign, onMenuRemove }: WeekCalendarProps) {
   const [currentWeek, setCurrentWeek] = useState(new Date());
   const [weekPlans, setWeekPlans] = useState<Record<string, Array<{ id: number; menuItem?: any; mealType?: string }>>>({});
-  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'warning' | 'info' } | null>(null);
+  const { showToast } = useToast();
 
   const weekStart = startOfWeek(currentWeek, { weekStartsOn: 1 }); // Monday start
   const weekDays = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
@@ -62,15 +62,14 @@ export function WeekCalendar({ onMenuAssign, onMenuRemove }: WeekCalendarProps) 
       if (response.ok) {
         fetchWeekPlan(); // Refresh
         onMenuAssign?.(date, menuItemId);
-      } else if (response.status === 409) {
-        // Menu already planned for this day
-        const errorData = await response.json();
-        setToast({ message: errorData.error, type: 'warning' });
+        showToast(`Menu added to ${format(date, 'EEEE, MMM d')}`, 'success');
       } else {
-        console.error('Failed to assign menu:', response.statusText);
+        const errorData = await response.json();
+        showToast(errorData.error || 'Failed to assign menu', 'error');
       }
     } catch (error) {
       console.error('Failed to assign menu:', error);
+      showToast('Failed to assign menu. Please try again.', 'error');
     }
   };
 
@@ -82,22 +81,17 @@ export function WeekCalendar({ onMenuAssign, onMenuRemove }: WeekCalendarProps) 
 
       if (response.ok) {
         fetchWeekPlan(); // Refresh
+      } else {
+        showToast('Failed to remove menu. Please try again.', 'error');
       }
     } catch (error) {
       console.error('Failed to remove menu:', error);
+      showToast('Failed to remove menu. Please try again.', 'error');
     }
   };
 
   return (
-    <>
-      {toast && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          onClose={() => setToast(null)}
-        />
-      )}
-      <div className="w-full max-w-6xl mx-auto p-4">
+    <div className="w-full max-w-6xl mx-auto p-4">
       {/* Week Navigation */}
       <div className="flex items-center justify-between mb-6">
         <button
@@ -138,7 +132,6 @@ export function WeekCalendar({ onMenuAssign, onMenuRemove }: WeekCalendarProps) 
           );
         })}
       </div>
-      </div>
-    </>
+    </div>
   );
 }

@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useConfirmationDialog } from "./confirmation-dialog";
+import { useToast } from "./toast-provider";
 
 interface Ingredient {
   id: number;
@@ -51,6 +53,8 @@ function StarRating({ rating }: { rating?: number }) {
 
 export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuItemCardProps) {
   const [isDeleting, setIsDeleting] = useState(false);
+  const { showConfirmation, ConfirmationDialog } = useConfirmationDialog();
+  const { showToast } = useToast();
 
   const handleDragStart = (e: React.DragEvent) => {
     if (isDraggable) {
@@ -62,17 +66,25 @@ export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuIt
   const handleDelete = async () => {
     if (!onDelete) return;
     
-    const confirmed = window.confirm(`Are you sure you want to delete "${menuItem.name}"?`);
-    if (!confirmed) return;
-
-    setIsDeleting(true);
-    try {
-      await onDelete(menuItem.id);
-    } catch (error) {
-      console.error("Error deleting menu item:", error);
-    } finally {
-      setIsDeleting(false);
-    }
+    showConfirmation({
+      title: 'Delete Menu',
+      message: `Are you sure you want to delete "${menuItem.name}"? This action cannot be undone.`,
+      confirmLabel: 'Delete',
+      cancelLabel: 'Cancel',
+      variant: 'danger',
+      onConfirm: async () => {
+        setIsDeleting(true);
+        try {
+          await onDelete(menuItem.id);
+          showToast(`"${menuItem.name}" has been deleted successfully.`, 'success');
+        } catch (error) {
+          console.error("Error deleting menu item:", error);
+          showToast(`Failed to delete "${menuItem.name}". Please try again.`, 'error');
+        } finally {
+          setIsDeleting(false);
+        }
+      }
+    });
   };
 
   const cardClass = `
@@ -82,11 +94,13 @@ export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuIt
   `;
 
   return (
-    <div 
-      className={cardClass} 
-      draggable={isDraggable}
-      onDragStart={handleDragStart}
-    >
+    <>
+      {ConfirmationDialog}
+      <div 
+        className={cardClass} 
+        draggable={isDraggable}
+        onDragStart={handleDragStart}
+      >
       {/* Menu Image */}
       {menuItem.image && (
         <div className="aspect-video w-full overflow-hidden rounded-t-lg">
@@ -162,7 +176,8 @@ export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuIt
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

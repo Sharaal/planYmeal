@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { MenuItem } from '@prisma/client';
+import { useConfirmationDialog } from './confirmation-dialog';
+import { useToast } from './toast-provider';
 
 interface DayCardProps {
   date: Date;
@@ -24,6 +26,8 @@ export function DayCard({
   onMenuRemove,
 }: DayCardProps) {
   const [isDragOver, setIsDragOver] = useState(false);
+  const { showConfirmation, ConfirmationDialog } = useConfirmationDialog();
+  const { showToast } = useToast();
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -44,12 +48,24 @@ export function DayCard({
     }
   };
 
-  const handleRemoveMenu = (dayPlanId: number) => {
-    onMenuRemove(dayPlanId);
+  const handleRemoveMenu = (dayPlanId: number, menuName?: string) => {
+    showConfirmation({
+      title: 'Remove Menu',
+      message: `Are you sure you want to remove ${menuName ? `"${menuName}"` : 'this menu'} from ${format(date, 'EEEE, MMM d')}?`,
+      confirmLabel: 'Remove',
+      cancelLabel: 'Cancel',
+      variant: 'warning',
+      onConfirm: () => {
+        onMenuRemove(dayPlanId);
+        showToast(`Menu removed from ${format(date, 'EEEE, MMM d')}`, 'success');
+      }
+    });
   };
 
   return (
-    <div
+    <>
+      {ConfirmationDialog}
+      <div
       className={`
         border-2 border-dashed rounded-lg p-4 min-h-[120px] transition-all duration-200 w-full
         ${isDragOver ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}
@@ -109,7 +125,7 @@ export function DayCard({
                       )}
                     </div>
                     <button
-                      onClick={() => handleRemoveMenu(dayPlan.id)}
+                      onClick={() => handleRemoveMenu(dayPlan.id, dayPlan.menuItem?.name)}
                       className="text-red-600 hover:text-red-800 hover:bg-red-50 rounded p-1 flex-shrink-0"
                       title="Remove this menu"
                     >
@@ -126,6 +142,7 @@ export function DayCard({
           )}
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
