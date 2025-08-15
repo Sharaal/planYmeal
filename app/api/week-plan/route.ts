@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import prisma from '@/lib/prisma';
-import { addDays, parseISO } from 'date-fns';
+import { addDays } from 'date-fns';
 
 export async function GET(request: NextRequest) {
   try {
@@ -25,15 +25,19 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Start date is required' }, { status: 400 });
     }
 
-    const start = parseISO(startDate);
-    const end = addDays(start, 6); // 7 days total
+    // Calculate end date (6 days later for 7 days total)
+    const startDateObj = new Date(startDate);
+    const endDateObj = addDays(startDateObj, 6);
+    const endDate = endDateObj.toISOString().split('T')[0]; // Convert back to YYYY-MM-DD format
+
+    console.log('Week plan query:', { startDate, endDate });
 
     const dayPlans = await prisma.dayPlan.findMany({
       where: {
         userId: user.id,
         date: {
-          gte: start,
-          lte: end,
+          gte: new Date(startDate + 'T00:00:00.000Z'),
+          lte: new Date(endDate + 'T23:59:59.999Z'),
         },
       },
       include: {

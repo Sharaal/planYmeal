@@ -1,9 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { WeekCalendar } from './week-calendar';
-import { MenuItemCard } from './menu-item';
 import Link from 'next/link';
+import { WeekCalendar } from './week-calendar';
 import { useTranslation } from 'react-i18next';
 
 interface Ingredient {
@@ -29,7 +27,6 @@ interface CalendarClientProps {
 }
 
 export function CalendarClient({ menuItems }: CalendarClientProps) {
-  const [showShoppingList, setShowShoppingList] = useState(false);
   const { t } = useTranslation();
 
   return (
@@ -92,54 +89,9 @@ export function CalendarClient({ menuItems }: CalendarClientProps) {
             </div>
           </div>
 
-          {/* Quick Actions */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4">
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('quickActions.title')}</h3>
-            <div className="space-y-2">
-              <button
-                onClick={() => setShowShoppingList(!showShoppingList)}
-                className="block w-full px-4 py-2 text-sm bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors"
-              >
-                {t('shoppingList.generate')}
-              </button>
-              <Link
-                href="/menus"
-                className="block w-full px-4 py-2 text-sm text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors text-center"
-              >
-                {t('shoppingList.manageMenus')}
-              </Link>
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* Shopping List Modal */}
-      {showShoppingList && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto">
-            <div className="p-4 border-b border-gray-200 flex items-center justify-between">
-              <h2 className="text-xl font-semibold">{t('shoppingList.title')}</h2>
-              <button
-                onClick={() => setShowShoppingList(false)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div className="p-4">
-              <p className="text-gray-600">{t('shoppingList.functionality')}</p>
-              <button
-                onClick={() => setShowShoppingList(false)}
-                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-              >
-                {t('common.close')}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import prisma from '@/lib/prisma';
-import { parseISO } from 'date-fns';
 
 export async function POST(request: NextRequest) {
   try {
@@ -43,14 +42,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const planDate = parseISO(date);
-
+    console.log('Creating day plan for date:', date);
 
     // Create day plan (allow multiple menus per day)
+    // Convert date string to Date object for Prisma
     const dayPlan = await prisma.dayPlan.create({
       data: {
         userId: user.id,
-        date: planDate,
+        date: new Date(date + 'T00:00:00.000Z'),
         menuItemId: menuItemId,
         mealType: 'main', // Default meal type, could be made dynamic later
       },

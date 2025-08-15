@@ -94,7 +94,7 @@ model Ingredient {
 model DayPlan {
   id         Int      @id @default(autoincrement())
   userId     Int
-  date       DateTime
+  date       DateTime @db.Date
   menuItemId Int
   mealType   String   @default("main") // breakfast, lunch, dinner, snack, main
   createdAt  DateTime @default(now())
@@ -107,14 +107,31 @@ model DayPlan {
 }
 
 model ShoppingList {
-  id          Int      @id @default(autoincrement())
-  userId      Int
-  ingredients Json
-  isCompleted Boolean  @default(false)
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  startDate DateTime @db.Date
+  endDate   DateTime @db.Date
+  name      String?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     ShoppingListItem[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([userId])
+}
+
+model ShoppingListItem {
+  id             Int          @id @default(autoincrement())
+  shoppingListId Int
+  name           String
+  amount         Float
+  unit           String
+  checked        Boolean      @default(false)
+  shoppingList   ShoppingList @relation(fields: [shoppingListId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([shoppingListId])
 }

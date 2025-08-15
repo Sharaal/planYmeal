@@ -13,11 +13,13 @@
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
-    "today": "Today"
+    "today": "Today",
+    "complete": "Complete"
   },
   "navigation": {
     "calendar": "Calendar",
     "menus": "Menus",
+    "shoppingLists": "Shopping Lists",
     "signOut": "Sign Out"
   },
   "auth": {
@@ -55,11 +57,26 @@
     "removeMenuMessage": "Are you sure you want to remove {{menuName}} from {{date}}?",
     "thisMenu": "this menu"
   },
-  "shoppingList": {
-    "title": "Shopping List",
-    "generate": "🛒 Generate Shopping List",
-    "manageMenus": "Manage All Menus",
-    "functionality": "Shopping list functionality will be implemented here."
+  "shoppingLists": {
+    "title": "Shopping Lists",
+    "createNew": "Create New Shopping List",
+    "noShoppingLists": "No shopping lists yet",
+    "createFirst": "Create your first shopping list",
+    "dateRange": "{{startDate}} - {{endDate}}",
+    "itemsCount": "{{count}} item",
+    "itemsCount_plural": "{{count}} items",
+    "allChecked": "All items checked!",
+    "deleteSuccess": "Shopping list deleted successfully",
+    "deleteError": "Failed to delete shopping list",
+    "createTitle": "Create Shopping List",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "create": "Create Shopping List",
+    "cancel": "Cancel",
+    "noMenusInRange": "No menus found in the selected date range",
+    "createSuccess": "Shopping list created successfully",
+    "createError": "Failed to create shopping list",
+    "deleteConfirm": "Are you sure you want to delete this shopping list?"
   },
   "quickActions": {
     "title": "Quick Actions"

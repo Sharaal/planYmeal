@@ -26,10 +26,13 @@ i18n
       escapeValue: false, // not needed for react as it escapes by default
     },
 
+    // Disable automatic detection to prevent hydration mismatches
+    // Language will be set manually after component mounts
+    lng: 'en', // Always start with English on server
+    
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
-      lookupLocalStorage: 'i18nextLng',
-      caches: ['localStorage'],
+      order: [],
+      caches: [],
     },
   });
 

@@ -72,12 +72,6 @@ export function ShoppingList({ weekStart = new Date(), onClose }: ShoppingListPr
           weekStart: format(week, 'yyyy-MM-dd'),
         }),
       });
-
-      if (response.ok) {
-        console.log('Shopping list saved successfully');
-      } else {
-        console.error('Failed to save shopping list');
-      }
     } catch (error) {
       console.error('Error saving shopping list:', error);
     } finally {

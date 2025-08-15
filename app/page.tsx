@@ -14,7 +14,7 @@ export default async function Home() {
   if (!session?.user?.email) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
-        <div>
+        <div className="text-center">
           <SignInContent />
           <SignInButton />
         </div>

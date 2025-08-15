@@ -13,11 +13,13 @@
     "back": "Zurück",
     "next": "Weiter",
     "previous": "Zurück",
-    "today": "Heute"
+    "today": "Heute",
+    "complete": "Abgeschlossen"
   },
   "navigation": {
     "calendar": "Kalender",
     "menus": "Menüs",
+    "shoppingLists": "Einkaufslisten",
     "signOut": "Abmelden"
   },
   "auth": {
@@ -55,11 +57,26 @@
     "removeMenuMessage": "Sind Sie sicher, dass Sie {{menuName}} von {{date}} entfernen möchten?",
     "thisMenu": "dieses Menü"
   },
-  "shoppingList": {
-    "title": "Einkaufsliste",
-    "generate": "🛒 Einkaufsliste generieren",
-    "manageMenus": "Alle Menüs verwalten",
-    "functionality": "Die Einkaufslistenfunktionalität wird hier implementiert."
+  "shoppingLists": {
+    "title": "Einkaufslisten",
+    "createNew": "Neue Einkaufsliste erstellen",
+    "noShoppingLists": "Noch keine Einkaufslisten",
+    "createFirst": "Erstellen Sie Ihre erste Einkaufsliste",
+    "dateRange": "{{startDate}} - {{endDate}}",
+    "itemsCount": "{{count}} Artikel",
+    "itemsCount_plural": "{{count}} Artikel",
+    "allChecked": "Alle Artikel abgehakt!",
+    "deleteSuccess": "Einkaufsliste erfolgreich gelöscht",
+    "deleteError": "Fehler beim Löschen der Einkaufsliste",
+    "createTitle": "Einkaufsliste erstellen",
+    "startDate": "Startdatum",
+    "endDate": "Enddatum",
+    "create": "Einkaufsliste erstellen",
+    "cancel": "Abbrechen",
+    "noMenusInRange": "Keine Menüs im ausgewählten Datumsbereich gefunden",
+    "createSuccess": "Einkaufsliste erfolgreich erstellt",
+    "createError": "Fehler beim Erstellen der Einkaufsliste",
+    "deleteConfirm": "Sind Sie sicher, dass Sie diese Einkaufsliste löschen möchten?"
   },
   "quickActions": {
     "title": "Schnellaktionen"

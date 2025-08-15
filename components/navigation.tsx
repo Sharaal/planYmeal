@@ -33,6 +33,9 @@ export default function Navigation() {
             <Link href="/menus" className={`transition-colors ${isActive("/menus")}`}>
               {t('navigation.menus')}
             </Link>
+            <Link href="/shopping-lists" className={`transition-colors ${isActive("/shopping-lists")}`}>
+              {t('navigation.shoppingLists')}
+            </Link>
           </nav>
         </div>
         
