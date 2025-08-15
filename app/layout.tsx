@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Superblog",
-  description: "Superblog is a blog platform for the modern age.",
+  title: "PlanYMeal",
+  description: "Plan your meals, organize your week, and generate shopping lists effortlessly.",
 };
 
 export default function RootLayout({
