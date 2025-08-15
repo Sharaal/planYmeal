@@ -48,7 +48,8 @@
     "moreIngredients": "+{{count}} weitere",
     "deleteSuccess": "\"{{name}}\" wurde erfolgreich gelöscht.",
     "deleteError": "\"{{name}}\" konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
-    "removeMenu": "Dieses Menü entfernen"
+    "removeMenu": "Dieses Menü entfernen",
+    "doubleClickToAutoAssign": "Doppelklick um \"{{name}}\" automatisch dem nächsten freien Tag zuzuordnen"
   },
   "confirmDialog": {
     "deleteMenuTitle": "Menü löschen",

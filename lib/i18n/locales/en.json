@@ -48,7 +48,8 @@
     "moreIngredients": "+{{count}} more",
     "deleteSuccess": "\"{{name}}\" has been deleted successfully.",
     "deleteError": "Failed to delete \"{{name}}\". Please try again.",
-    "removeMenu": "Remove this menu"
+    "removeMenu": "Remove this menu",
+    "doubleClickToAutoAssign": "Double-click to auto-assign \"{{name}}\" to next free day"
   },
   "confirmDialog": {
     "deleteMenuTitle": "Delete Menu",

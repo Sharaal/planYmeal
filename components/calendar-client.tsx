@@ -29,6 +29,27 @@ interface CalendarClientProps {
 export function CalendarClient({ menuItems }: CalendarClientProps) {
   const { t } = useTranslation();
 
+  const handleAutoAssignMenu = async (menuItemId: number) => {
+    try {
+      const response = await fetch('/api/week-plan/auto-assign', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ menuItemId }),
+      });
+
+      if (response.ok) {
+        // Refresh the page to show the updated calendar
+        window.location.reload();
+      } else {
+        const errorData = await response.json();
+        console.error('Failed to auto-assign menu:', errorData.error);
+        // Could show a toast notification here
+      }
+    } catch (error) {
+      console.error('Failed to auto-assign menu:', error);
+    }
+  };
+
   return (
     <div className="flex flex-col lg:flex-row gap-8">
       {/* Calendar Section */}
@@ -64,6 +85,8 @@ export function CalendarClient({ menuItems }: CalendarClientProps) {
                         e.dataTransfer.setData('menuItemId', menuItem.id.toString());
                         e.dataTransfer.effectAllowed = 'copy';
                       }}
+                      onDoubleClick={() => handleAutoAssignMenu(menuItem.id)}
+                      title={t('menus.doubleClickToAutoAssign', { name: menuItem.name })}
                     >
                       {/* Menu Image */}
                       {menuItem.image && (
