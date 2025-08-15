@@ -127,13 +127,6 @@ export function DayCard({
                           {dayPlan.mealType}
                         </span>
                       )}
-                      {dayPlan.menuItem?.rating && (
-                        <div className="flex items-center mt-1">
-                          <span className="text-yellow-400 text-sm">
-                            {'★'.repeat(Math.floor(dayPlan.menuItem.rating))}
-                          </span>
-                        </div>
-                      )}
                     </div>
                     <button
                       onClick={() => handleRemoveMenu(dayPlan.id, dayPlan.menuItem?.name)}
