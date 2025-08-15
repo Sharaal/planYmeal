@@ -85,7 +85,7 @@
 - [ ] **Create `/app/api/shopping-list/route.ts`** for GET/POST shopping lists
 - [ ] **Create `/app/api/shopping-list/[id]/route.ts`** for updating list status
 - [ ] **Create shopping list modal/dialog** accessible from calendar
-- [ ] **Add save/export functionality** for shopping lists
+- [ ] **Add save functionality** for shopping lists
 
 ## Phase 5: Internationalization (i18n)
 
@@ -133,7 +133,6 @@
 - [ ] **Add database indexes** for frequently queried fields
 - [ ] **Implement connection pooling** for production environment
 - [ ] **Add data seeding** for development and testing
-- [ ] **Set up database backup strategy** for production
 
 ## Phase 8: Testing & Quality Assurance
 
@@ -155,13 +154,6 @@
 - [ ] **Implement lazy loading** for menu images
 - [ ] **Add image optimization** (next/image configuration)
 - [ ] **Optimize bundle size** (analyze and tree-shake unused code)
-- [ ] **Add caching strategy** for API responses
-
-### 9.2 Deployment Setup
-- [ ] **Configure environment variables** for production
-- [ ] **Set up PostgreSQL** production database
-- [ ] **Configure Docker** for containerized deployment
-- [ ] **Set up monitoring** and error tracking (Sentry)
 
 ### 9.3 Documentation
 - [ ] **Update README.md** with installation and usage instructions
@@ -177,31 +169,3 @@
 ✅ **Styling:** Tailwind CSS  
 ✅ **Responsive:** Mobile-first approach  
 ✅ **API:** RESTful with proper CORS  
-
-## Estimated Timeline
-
-- **Phase 1-2:** 2-3 weeks (Foundation & Core Features)
-- **Phase 3-4:** 2-3 weeks (Calendar & Shopping Lists) 
-- **Phase 5-6:** 2-3 weeks (i18n & UI/UX)
-- **Phase 7-9:** 2-3 weeks (Security, Testing & Production)
-
-**Total Estimated Time:** 8-12 weeks for full implementation
-
-## Dependencies to Install
-
-```bash
-# Additional packages needed
-npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities  # Drag & Drop
-npm install next-intl  # Internationalization
-npm install zod  # Schema validation
-npm install react-hook-form @hookform/resolvers  # Form handling
-npm install date-fns  # Date utilities
-npm install clsx class-variance-authority  # Styling utilities
-```
-
-## Notes
-
-- **Incremental Implementation:** Each phase can be implemented and tested independently
-- **User Data Migration:** Existing user accounts from blog demo will be preserved
-- **Feature Flags:** Consider implementing feature flags for gradual rollout
-- **Mobile PWA:** Consider adding PWA capabilities for mobile app experience
