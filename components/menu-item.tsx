@@ -52,6 +52,13 @@ function StarRating({ rating }: { rating?: number }) {
 export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuItemCardProps) {
   const [isDeleting, setIsDeleting] = useState(false);
 
+  const handleDragStart = (e: React.DragEvent) => {
+    if (isDraggable) {
+      e.dataTransfer.setData('menuItemId', menuItem.id.toString());
+      e.dataTransfer.effectAllowed = 'copy';
+    }
+  };
+
   const handleDelete = async () => {
     if (!onDelete) return;
     
@@ -75,7 +82,11 @@ export function MenuItemCard({ menuItem, onDelete, isDraggable = false }: MenuIt
   `;
 
   return (
-    <div className={cardClass} draggable={isDraggable}>
+    <div 
+      className={cardClass} 
+      draggable={isDraggable}
+      onDragStart={handleDragStart}
+    >
       <div className="p-4">
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1">

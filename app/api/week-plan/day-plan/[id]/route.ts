@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import prisma from '@/lib/prisma';
-import { parseISO } from 'date-fns';
 
 interface RouteParams {
-  params: Promise<{ date: string }>;
+  params: Promise<{ id: string }>;
 }
 
 export async function DELETE(
@@ -25,16 +24,24 @@ export async function DELETE(
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    const { date } = await params;
-    const planDate = parseISO(date);
+    const { id } = await params;
+    const dayPlanId = parseInt(id, 10);
 
-    // Delete the day plan
-    await prisma.dayPlan.deleteMany({
+    if (isNaN(dayPlanId)) {
+      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+    }
+
+    // Delete the specific day plan
+    const deleteResult = await prisma.dayPlan.deleteMany({
       where: {
+        id: dayPlanId,
         userId: user.id,
-        date: planDate,
       },
     });
+
+    if (deleteResult.count === 0) {
+      return NextResponse.json({ error: 'Day plan not found' }, { status: 404 });
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

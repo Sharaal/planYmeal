@@ -90,7 +90,7 @@ export function MenuForm({ menuItem, onSubmit, isLoading = false }: MenuFormProp
           throw new Error("Failed to save menu item");
         }
 
-        router.push("/");
+        router.push("/menus");
         router.refresh();
       } catch (error) {
         console.error("Error saving menu item:", error);

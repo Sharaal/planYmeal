@@ -3,27 +3,13 @@ import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
 import { CalendarClient } from "@/components/calendar-client";
-import { SignInButton } from "@/components/auth";
 
-export default async function Home() {
+export default async function CalendarPage() {
   noStore();
 
   const session = await auth();
-
   if (!session?.user?.email) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600">
-            PlanYMeal
-          </h1>
-          <p className="text-gray-600 text-xl mb-8 max-w-md mx-auto">
-            Plan your meals, organize your week, and generate shopping lists effortlessly
-          </p>
-          <SignInButton />
-        </div>
-      </div>
-    );
+    redirect("/");
   }
 
   const user = await prisma.user.findUnique({

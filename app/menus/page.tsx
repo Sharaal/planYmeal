@@ -3,7 +3,7 @@ import Link from "next/link";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
-import { MenuItemCard } from "@/components/menu-item";
+import { MenuList } from "@/components/menu-list";
 
 interface MenusPageProps {
   searchParams: Promise<{ page?: string; limit?: string }>;
@@ -49,23 +49,7 @@ export default async function MenusPage({ searchParams }: MenusPageProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-b border-gray-100 z-10">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-blue-600">
-            PlanYMeal
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/menus/new"
-              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
-            >
-              Add Menu
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-4 pt-24 pb-16">
+      <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-4xl font-bold text-gray-900 mb-2">Your Menus</h1>
@@ -106,20 +90,7 @@ export default async function MenusPage({ searchParams }: MenusPageProps) {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {menuItems.map((menuItem) => (
-                <MenuItemCard
-                  key={menuItem.id}
-                  menuItem={{
-                    ...menuItem,
-                    description: menuItem.description || undefined,
-                    image: menuItem.image || undefined,
-                    rating: menuItem.rating || undefined,
-                  }}
-                  isDraggable={false}
-                />
-              ))}
-            </div>
+            <MenuList menuItems={menuItems} />
 
             {/* Pagination */}
             {totalPages > 1 && (

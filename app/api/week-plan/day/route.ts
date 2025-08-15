@@ -1,19 +1,13 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/auth";
-import prisma from "@/lib/prisma";
+import { NextRequest, NextResponse } from 'next/server';
+import { auth } from '@/auth';
+import prisma from '@/lib/prisma';
+import { parseISO } from 'date-fns';
 
 export async function POST(request: NextRequest) {
-  const session = await auth();
-  if (!session?.user?.email) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   try {
-    const body = await request.json();
-    const { date, menuItemId } = body;
-
-    if (!date) {
-      return NextResponse.json({ error: "Date is required" }, { status: 400 });
+    const session = await auth();
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const user = await prisma.user.findUnique({
@@ -21,41 +15,44 @@ export async function POST(request: NextRequest) {
     });
 
     if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    // Verify menu item belongs to user if provided
-    if (menuItemId) {
-      const menuItem = await prisma.menuItem.findFirst({
-        where: {
-          id: parseInt(menuItemId),
-          userId: user.id,
-        },
-      });
+    const body = await request.json();
+    const { date, menuItemId } = body;
 
-      if (!menuItem) {
-        return NextResponse.json({ error: "Menu item not found" }, { status: 404 });
-      }
+    if (!date || !menuItemId) {
+      return NextResponse.json(
+        { error: 'Date and menuItemId are required' },
+        { status: 400 }
+      );
     }
 
-    const planDate = new Date(date);
-    planDate.setHours(0, 0, 0, 0);
-
-    // Upsert day plan
-    const dayPlan = await prisma.dayPlan.upsert({
+    // Verify the menu item belongs to the user
+    const menuItem = await prisma.menuItem.findFirst({
       where: {
-        userId_date: {
-          userId: user.id,
-          date: planDate,
-        },
+        id: menuItemId,
+        userId: user.id,
       },
-      update: {
-        menuItemId: menuItemId ? parseInt(menuItemId) : null,
-      },
-      create: {
+    });
+
+    if (!menuItem) {
+      return NextResponse.json(
+        { error: 'Menu item not found or unauthorized' },
+        { status: 404 }
+      );
+    }
+
+    const planDate = parseISO(date);
+
+
+    // Create day plan (allow multiple menus per day)
+    const dayPlan = await prisma.dayPlan.create({
+      data: {
         userId: user.id,
         date: planDate,
-        menuItemId: menuItemId ? parseInt(menuItemId) : null,
+        menuItemId: menuItemId,
+        mealType: 'main', // Default meal type, could be made dynamic later
       },
       include: {
         menuItem: {
@@ -68,9 +65,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(dayPlan);
   } catch (error) {
-    console.error("Error updating day plan:", error);
+    console.error('Error creating/updating day plan:', error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

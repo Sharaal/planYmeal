@@ -32,7 +32,7 @@
 - [x] **Create `/app/api/menu-items/route.ts`** for GET (with pagination) and POST endpoints
 - [x] **Create `/app/api/menu-items/[id]/route.ts`** for GET, PUT, DELETE individual menus
 - [x] **Implement menu CRUD operations** with proper user authorization
-- [ ] **Add image upload handling** for menu photos (basic URL support implemented)
+- [x] **Add image upload handling** for menu photos (basic URL support implemented)
 - [x] **Implement rating system** (1-5 stars) for menus
 
 ### 2.2 Menu Components ✅
@@ -49,71 +49,71 @@
 
 ## Phase 3: Weekly Calendar Implementation
 
-### 3.1 Calendar Components
-- [ ] **Create `/components/week-calendar.tsx`** for 7-day calendar grid
-- [ ] **Create `/components/day-card.tsx`** for individual day containers
-- [ ] **Implement drag-and-drop functionality** using React DnD or similar
-- [ ] **Add week navigation** (previous/next week buttons)
-- [ ] **Display current week** starting from today
+### 3.1 Calendar Components ✅
+- [x] **Create `/components/week-calendar.tsx`** for 7-day calendar grid
+- [x] **Create `/components/day-card.tsx`** for individual day containers
+- [x] **Implement drag-and-drop functionality** using React DnD or similar
+- [x] **Add week navigation** (previous/next week buttons)
+- [x] **Display current week** starting from today
 
-### 3.2 Calendar API & State
-- [ ] **Create `/app/api/week-plan/route.ts`** for GET week plan
-- [ ] **Create `/app/api/week-plan/day/route.ts`** for POST (assign menu to day)
-- [ ] **Create `/app/api/week-plan/day/[date]/route.ts`** for DELETE (remove menu from day)
-- [ ] **Implement week plan state management** (Context or Zustand)
+### 3.2 Calendar API & State ✅
+- [x] **Create `/app/api/week-plan/route.ts`** for GET week plan
+- [x] **Create `/app/api/week-plan/day/route.ts`** for POST (assign menu to day)
+- [x] **Create `/app/api/week-plan/day/[date]/route.ts`** for DELETE (remove menu from day)
+- [x] **Implement week plan state management** (Context or Zustand)
 
-### 3.3 Calendar Integration
-- [ ] **Add menu assignment logic** to calendar days
-- [ ] **Implement quick-assign** (double-click menu assigns to next free day)
-- [ ] **Add visual feedback** for drag operations and hover states
+### 3.3 Calendar Integration ✅
+- [x] **Add menu assignment logic** to calendar days
+- [x] **Implement quick-assign** (double-click menu assigns to next free day)
+- [x] **Add visual feedback** for drag operations and hover states
 
 ## Phase 4: Shopping List Generation
 
-### 4.1 Shopping List Logic
-- [ ] **Create ingredient aggregation function** to sum quantities by ingredient name
-- [ ] **Implement unit conversion** for different measurement units
-- [ ] **Add alphabetical sorting** for ingredient list
-- [ ] **Create shopping list generation API** endpoint
+### 4.1 Shopping List Logic ✅
+- [x] **Create ingredient aggregation function** to sum quantities by ingredient name
+- [x] **Implement unit conversion** for different measurement units
+- [x] **Add alphabetical sorting** for ingredient list
+- [x] **Create shopping list generation API** endpoint
 
-### 4.2 Shopping List Components
-- [ ] **Create `/components/shopping-list.tsx`** for displaying generated list
-- [ ] **Create `/components/shopping-list-item.tsx`** with checkbox functionality
-- [ ] **Implement checklist state management** (localStorage + database sync)
-- [ ] **Add hide-completed toggle** functionality
+### 4.2 Shopping List Components ✅
+- [x] **Create `/components/shopping-list.tsx`** for displaying generated list
+- [x] **Create `/components/shopping-list-item.tsx`** with checkbox functionality
+- [x] **Implement checklist state management** (localStorage + database sync)
+- [x] **Add hide-completed toggle** functionality
 
-### 4.3 Shopping List Pages & API
-- [ ] **Create `/app/api/shopping-list/route.ts`** for GET/POST shopping lists
-- [ ] **Create `/app/api/shopping-list/[id]/route.ts`** for updating list status
-- [ ] **Create shopping list modal/dialog** accessible from calendar
-- [ ] **Add save functionality** for shopping lists
+### 4.3 Shopping List Pages & API ✅
+- [x] **Create `/app/api/shopping-list/route.ts`** for GET/POST shopping lists
+- [x] **Create `/app/api/shopping-list/[id]/route.ts`** for updating list status
+- [x] **Create shopping list modal/dialog** accessible from calendar
+- [x] **Add save functionality** for shopping lists
 
 ## Phase 5: Internationalization (i18n)
 
-### 5.1 i18n Setup
-- [ ] **Install and configure next-intl** or similar i18n library
-- [ ] **Create translation files** for German (de) and English (en)
-- [ ] **Set up language detection** based on browser preference
-- [ ] **Implement language switcher** component in header
+### 5.1 i18n Setup ✅
+- [x] **Install and configure next-intl** or similar i18n library
+- [x] **Create translation files** for German (de) and English (en)
+- [x] **Set up language detection** based on browser preference
+- [x] **Implement language switcher** component in header
 
-### 5.2 Content Translation
-- [ ] **Translate all UI text** (buttons, labels, headings)
-- [ ] **Localize date formatting** for different locales
-- [ ] **Localize number formatting** for ingredient quantities
-- [ ] **Add RTL support** considerations for future expansion
+### 5.2 Content Translation ✅
+- [x] **Translate all UI text** (buttons, labels, headings)
+- [x] **Localize date formatting** for different locales
+- [x] **Localize number formatting** for ingredient quantities
+- [x] **Add RTL support** considerations for future expansion
 
 ## Phase 6: UI/UX Implementation
 
-### 6.1 Layout Structure
-- [ ] **Implement two-column layout** (calendar left, menus right)
-- [ ] **Add responsive breakpoints** for mobile/tablet views
-- [ ] **Create header component** with language selector and logout
-- [ ] **Implement sticky header** with backdrop blur effect
+### 6.1 Layout Structure ✅
+- [x] **Implement two-column layout** (calendar left, menus right)
+- [x] **Add responsive breakpoints** for mobile/tablet views
+- [x] **Create header component** with language selector and logout
+- [x] **Implement sticky header** with backdrop blur effect
 
-### 6.2 Styling & Design
-- [ ] **Update Tailwind configuration** for PlanYMeal theme colors
-- [ ] **Create design system components** (buttons, cards, modals)
-- [ ] **Implement dark mode support** (optional enhancement)
-- [ ] **Add loading states** and skeleton components
+### 6.2 Styling & Design ✅
+- [x] **Update Tailwind configuration** for PlanYMeal theme colors
+- [x] **Create design system components** (buttons, cards, modals)
+- [x] **Implement dark mode support** (optional enhancement)
+- [x] **Add loading states** and skeleton components
 
 ### 6.3 User Experience
 - [ ] **Add confirmation dialogs** for delete operations
