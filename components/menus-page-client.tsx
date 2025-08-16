@@ -1,8 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { MenuList } from "@/components/menu-list";
+import { ImportMenuDialog } from "./import-menu-dialog";
+import { EditMenuDialog } from "./edit-menu-dialog";
 
 interface Ingredient {
   id: number;
@@ -22,6 +25,14 @@ interface MenuItem {
   updatedAt: Date;
 }
 
+interface RecipeData {
+  name: string;
+  description: string;
+  image: string | null;
+  rating: number | null;
+  ingredients: { name: string; amount: number; unit: string }[];
+}
+
 interface MenusPageClientProps {
   menuItems: MenuItem[];
   totalCount: number;
@@ -37,7 +48,20 @@ export function MenusPageClient({
   totalPages, 
   limit 
 }: MenusPageClientProps) {
+  const [showImportDialog, setShowImportDialog] = useState(false);
+  const [showEditDialog, setShowEditDialog] = useState(false);
+  const [importedRecipeData, setImportedRecipeData] = useState<RecipeData | null>(null);
   const { t } = useTranslation();
+
+  const handleImportSuccess = (recipeData: RecipeData) => {
+    setImportedRecipeData(recipeData);
+    setShowEditDialog(true);
+  };
+
+  const handleEditDialogClose = () => {
+    setShowEditDialog(false);
+    setImportedRecipeData(null);
+  };
 
   return (
     <>
@@ -50,15 +74,26 @@ export function MenusPageClient({
           </p>
         </div>
         {totalCount > 0 && (
-          <Link
-            href="/menus/new"
-            className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-            {t('menus.addMenu')}
-          </Link>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setShowImportDialog(true)}
+              className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+              </svg>
+              {t('menus.importMenu')}
+            </button>
+            <Link
+              href="/menus/new"
+              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              {t('menus.addMenu')}
+            </Link>
+          </div>
         )}
       </div>
       
@@ -139,6 +174,22 @@ export function MenusPageClient({
             </div>
           )}
         </>
+      )}
+
+      {/* Import Dialog */}
+      {showImportDialog && (
+        <ImportMenuDialog 
+          onClose={() => setShowImportDialog(false)} 
+          onImportSuccess={handleImportSuccess}
+        />
+      )}
+
+      {/* Edit Dialog */}
+      {showEditDialog && importedRecipeData && (
+        <EditMenuDialog 
+          initialData={importedRecipeData}
+          onClose={handleEditDialogClose}
+        />
       )}
     </>
   );
