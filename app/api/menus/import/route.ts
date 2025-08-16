@@ -50,7 +50,7 @@ async function parseChefkochRecipe(html: string, url: string) {
                 description: item.description || "",
                 ingredients: ingredients.filter(ing => ing !== null),
                 image: item.image ? (Array.isArray(item.image) ? item.image[0] : item.image) : null,
-                rating: item.aggregateRating?.ratingValue ? parseFloat(item.aggregateRating.ratingValue) : null,
+                rating: 0,
               };
             }
           }
