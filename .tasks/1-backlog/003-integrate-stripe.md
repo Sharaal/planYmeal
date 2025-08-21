@@ -21,3 +21,4 @@
 - Default state for new users is not having a subscription
 - Subscription status display should be visible on an account page, which can be reached by clicking on the user in the header. The status should be linked with the stripe dashboard for the user to be able to cancel their subscription
 - After subscribe the user is redirect to the "Calendar" page
+- Use NPM package `stripe` to create stripe customer and getting product info
