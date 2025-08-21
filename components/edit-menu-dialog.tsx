@@ -57,7 +57,13 @@ export function EditMenuDialog({ initialData, onClose }: EditMenuDialogProps) {
         router.refresh();
       } else {
         const errorData = await response.json();
-        showToast(errorData.error || t('menus.importError'), 'error');
+        if (errorData.code === 'MENU_LIMIT_REACHED') {
+          // Redirect to pricing page
+          onClose();
+          router.push('/pricing');
+        } else {
+          showToast(errorData.error || t('menus.importError'), 'error');
+        }
       }
     } catch (error) {
       console.error('Failed to save menu:', error);

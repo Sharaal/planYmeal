@@ -24,6 +24,7 @@ model User {
   shoppingLists ShoppingList[]
   accounts      Account[]
   sessions      Session[]
+  subscription  Subscription?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -134,4 +135,18 @@ model ShoppingListItem {
   updatedAt DateTime @updatedAt
 
   @@index([shoppingListId])
+}
+
+model Subscription {
+  userId               Int    @id
+  status               String // "trial", "active", "canceled"
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+  user                 User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([stripeCustomerId])
+  @@index([stripeSubscriptionId])
 }

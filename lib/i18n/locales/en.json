@@ -20,6 +20,7 @@
     "calendar": "Calendar",
     "menus": "Menus",
     "shoppingLists": "Shopping Lists",
+    "pricing": "Pricing",
     "signOut": "Sign Out"
   },
   "auth": {
@@ -98,5 +99,44 @@
   },
   "quickActions": {
     "title": "Quick Actions"
+  },
+  "pricing": {
+    "title": "Choose Your Plan",
+    "subtitle": "Unlock unlimited meal planning with planYmeal Premium",
+    "features": "Features included:",
+    "feature": {
+      "unlimitedMenus": "Create unlimited menus"
+    },
+    "subscribe": "Subscribe Now",
+    "cancelAnytime": "Cancel anytime",
+    "interval": {
+      "month": "month",
+      "year": "year"
+    },
+    "freeLimit": {
+      "title": "Free Plan Limitations",
+      "description": "Free users can create up to 10 menus. Upgrade to Premium for unlimited menus and advanced features."
+    },
+    "errorFetchingProduct": "Error loading product information",
+    "errorRedirecting": "Error redirecting to payment"
+  },
+  "account": {
+    "title": "Account Settings",
+    "subtitle": "Manage your profile and subscription",
+    "profile": {
+      "title": "Profile Information"
+    },
+    "subscription": {
+      "title": "Subscription",
+      "status": "Status",
+      "menuUsage": "Menu Usage",
+      "freeLimit": "Free plan: 10 menus maximum",
+      "manage": "Manage Subscription",
+      "upgrade": "Upgrade to Premium",
+      "free": "Free Plan",
+      "trial": "Trial",
+      "active": "Active",
+      "canceled": "Canceled"
+    }
   }
 }

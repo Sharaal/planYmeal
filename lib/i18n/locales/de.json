@@ -20,6 +20,7 @@
     "calendar": "Kalender",
     "menus": "Menüs",
     "shoppingLists": "Einkaufslisten",
+    "pricing": "Preise",
     "signOut": "Abmelden"
   },
   "auth": {
@@ -98,5 +99,44 @@
   },
   "quickActions": {
     "title": "Schnellaktionen"
+  },
+  "pricing": {
+    "title": "Wählen Sie Ihren Plan",
+    "subtitle": "Schalten Sie unbegrenzte Essensplanung mit planYmeal Premium frei",
+    "features": "Enthaltene Funktionen:",
+    "feature": {
+      "unlimitedMenus": "Unbegrenzte Menüs erstellen"
+    },
+    "subscribe": "Jetzt abonnieren",
+    "cancelAnytime": "Jederzeit kündbar",
+    "interval": {
+      "month": "Monat",
+      "year": "Jahr"
+    },
+    "freeLimit": {
+      "title": "Einschränkungen des kostenlosen Plans",
+      "description": "Kostenlose Nutzer können bis zu 10 Menüs erstellen. Upgraden Sie auf Premium für unbegrenzte Menüs und erweiterte Funktionen."
+    },
+    "errorFetchingProduct": "Fehler beim Laden der Produktinformationen",
+    "errorRedirecting": "Fehler bei der Weiterleitung zur Zahlung"
+  },
+  "account": {
+    "title": "Kontoeinstellungen",
+    "subtitle": "Verwalten Sie Ihr Profil und Abonnement",
+    "profile": {
+      "title": "Profilinformationen"
+    },
+    "subscription": {
+      "title": "Abonnement",
+      "status": "Status",
+      "menuUsage": "Menü-Nutzung",
+      "freeLimit": "Kostenloser Plan: Maximal 10 Menüs",
+      "manage": "Abonnement verwalten",
+      "upgrade": "Auf Premium upgraden",
+      "free": "Kostenloser Plan",
+      "trial": "Testversion",
+      "active": "Aktiv",
+      "canceled": "Gekündigt"
+    }
   }
 }

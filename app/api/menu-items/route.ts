@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
+import { canUserCreateMenu } from "@/lib/subscription";
 
 export async function GET(request: NextRequest) {
   const session = await auth();
@@ -75,6 +76,15 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+
+    // Check if user can create more menus
+    const canCreate = await canUserCreateMenu(user.id);
+    if (!canCreate) {
+      return NextResponse.json({ 
+        error: "Menu limit reached", 
+        code: "MENU_LIMIT_REACHED" 
+      }, { status: 403 });
     }
 
     const menuItem = await prisma.menuItem.create({

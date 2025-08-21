@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/navigation";
 import { MenuList } from "@/components/menu-list";
 import { ImportMenuDialog } from "./import-menu-dialog";
 import { EditMenuDialog } from "./edit-menu-dialog";
@@ -33,6 +34,16 @@ interface RecipeData {
   ingredients: { name: string; amount: number; unit: string }[];
 }
 
+interface SubscriptionStatus {
+  subscription: {
+    status: string | null;
+    isActive: boolean;
+  };
+  menuCount: number;
+  menuLimit: number;
+  canCreateMenu: boolean;
+}
+
 interface MenusPageClientProps {
   menuItems: MenuItem[];
   totalCount: number;
@@ -51,7 +62,25 @@ export function MenusPageClient({
   const [showImportDialog, setShowImportDialog] = useState(false);
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [importedRecipeData, setImportedRecipeData] = useState<RecipeData | null>(null);
+  const [subscriptionStatus, setSubscriptionStatus] = useState<SubscriptionStatus | null>(null);
   const { t } = useTranslation();
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchSubscriptionStatus = async () => {
+      try {
+        const response = await fetch('/api/subscription/status');
+        if (response.ok) {
+          const data = await response.json();
+          setSubscriptionStatus(data);
+        }
+      } catch (error) {
+        console.error('Error fetching subscription status:', error);
+      }
+    };
+
+    fetchSubscriptionStatus();
+  }, []);
 
   const handleImportSuccess = (recipeData: RecipeData) => {
     setImportedRecipeData(recipeData);
@@ -61,6 +90,22 @@ export function MenusPageClient({
   const handleEditDialogClose = () => {
     setShowEditDialog(false);
     setImportedRecipeData(null);
+  };
+
+  const handleAddMenuClick = () => {
+    if (!subscriptionStatus?.canCreateMenu) {
+      router.push('/pricing');
+    } else {
+      router.push('/menus/new');
+    }
+  };
+
+  const handleImportMenuClick = () => {
+    if (!subscriptionStatus?.canCreateMenu) {
+      router.push('/pricing');
+    } else {
+      setShowImportDialog(true);
+    }
   };
 
   return (
@@ -76,7 +121,7 @@ export function MenusPageClient({
         {totalCount > 0 && (
           <div className="flex items-center gap-3">
             <button
-              onClick={() => setShowImportDialog(true)}
+              onClick={handleImportMenuClick}
               className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,15 +129,15 @@ export function MenusPageClient({
               </svg>
               {t('menus.importMenu')}
             </button>
-            <Link
-              href="/menus/new"
+            <button
+              onClick={handleAddMenuClick}
               className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
               {t('menus.addMenu')}
-            </Link>
+            </button>
           </div>
         )}
       </div>
@@ -109,15 +154,15 @@ export function MenusPageClient({
             <p className="text-gray-600 mb-8">
               {t('menus.noMenusSubtitle')}
             </p>
-            <Link
-              href="/menus/new"
+            <button
+              onClick={handleAddMenuClick}
               className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
               {t('menus.createFirst')}
-            </Link>
+            </button>
           </div>
         </div>
       ) : (

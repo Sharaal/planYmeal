@@ -36,22 +36,27 @@ export default function Navigation() {
             <Link href="/shopping-lists" className={`transition-colors ${isActive("/shopping-lists")}`}>
               {t('navigation.shoppingLists')}
             </Link>
+            <Link href="/pricing" className={`transition-colors ${isActive("/pricing")}`}>
+              {t('navigation.pricing')}
+            </Link>
           </nav>
         </div>
         
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
             <LanguageSwitcher />
-            {session.user?.image && (
-              <img 
-                src={session.user.image} 
-                alt="Profile" 
-                className="w-8 h-8 rounded-full"
-              />
-            )}
-            <span className="text-sm text-gray-700 hidden sm:inline">
-              {session.user?.name}
-            </span>
+            <Link href="/account" className="flex items-center gap-2 hover:opacity-75 transition-opacity">
+              {session.user?.image && (
+                <img 
+                  src={session.user.image} 
+                  alt="Profile" 
+                  className="w-8 h-8 rounded-full"
+                />
+              )}
+              <span className="text-sm text-gray-700 hidden sm:inline">
+                {session.user?.name}
+              </span>
+            </Link>
             <button
               onClick={() => signOut()}
               className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
